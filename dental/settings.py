@@ -128,11 +128,11 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 django_heroku.settings(locals())
 
-EMAIL_HOST ='smtp.poczta.o2.pl'
+EMAIL_HOST ='smtp.poczta.tlen.pl'
 EMAIL_PORT= 465
 EMAIL_HOST_USER = 'jordan315@o2.pl'
 EMAIL_HOST_PASSWORD ='jordan3255'
-EMAIL_USE_TLS = True
+#EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
 
