@@ -1,8 +1,20 @@
 from django.shortcuts import render
 from django.core.mail import send_mail
+from django.utils.translation import gettext as _
+from django.utils.translation import get_language, activate, gettext
 
 def home(request):
-    return render(request, 'home.html', {})
+    trans = translate(language='nl')
+    return render(request, 'home.html', {trans:'trans'})
+
+def translate(language):
+    cur_language = get_language()
+    try:
+        activate(language)
+        text = gettext('We Believe Everyone Should Have Easy Access To Great Dental Care')
+    finally:
+        activate(cur_language)
+    return text
 
 def contact(request):
     if request.method == "POST":

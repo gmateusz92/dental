@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -83,16 +83,16 @@
               <!-- Nav Start -->
               <div class="classynav">
                 <ul id="nav">
-                  <li><a href="{% url 'home' %}">Home</a></li>
-                  <li><a href="#">Pages</a>
+                  <li><a href="{% url 'website:home' %}">{% trans "Home" %}</a></li>
+                  <li><a href="#">{% trans "Pages" %}</a>
                     <ul class="dropdown">
-                      <li><a href="index.html">- Home</a></li>
-                      <li><a href="about.html">- About Us</a></li>
-                      <li><a href="service.html">- Service</a></li>
-                      <li><a href="pricing.html">- Pricing</a></li>
-                      <li><a href="blog.html">- Blog</a></li>
-                      <li><a href="blog-details.html">- Blog Details</a></li>
-                      <li><a href="contact.html">- Contact</a></li>
+                      <li><a href="index.html">{% trans "Home" %}</a></li>
+                      <li><a href="about.html">{% trans "About Us" %}</a></li>
+                      <li><a href="service.html">{% trans "Service" %}</a></li>
+                      <li><a href="pricing.html">{% trans "Pricing" %}</a></li>
+                      <li><a href="blog.html">{% trans "Blog" %}</a></li>
+                      <li><a href="blog-details.html">{% trans "Blog Details" %}</a></li>
+                      <li><a href="contact.html">{% trans "Contact" %}</a></li>
                       <li><a href="#">- Dropdown</a>
                         <ul class="dropdown">
                           <li><a href="#">- Dropdown Item</a></li>
@@ -110,18 +110,39 @@
                       </li>
                     </ul>
                   </li>
-                  <li><a href="about.html">About</a></li>
-                  <li><a href="service.html">Service</a></li>
-                  <li><a href="pricing.html">Pricing</a></li>
-                  <li><a href="#">Blog</a>
+                  <li><a href="about.html">{% trans "About Us" %}</a></li>
+                  <li><a href="service.html">{% trans "Service" %}</a></li>
+                  <li><a href="pricing.html">{% trans "Pricing" %}</a></li>
+                  <li><a href="#">{% trans "Blog" %}</a>
                     <ul class="dropdown">
                       <li><a href="blog.html">- Blog</a></li>
                       <li><a href="blog-details.html">- Blog Details</a></li>
                     </ul>
                   </li>
-                  <li><a href="{% url 'contact' %}">Contact</a></li>
+                  <li><a href="{% url 'website:contact' %}">{% trans "Contact" %}</a></li>
+
+
+                  <li><a href="#">language</a>
+                    <ul class="dropdown">
+
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown"></ul>
+                      {% get_current_language as LANGUAGE_CODE %}
+                      {% get_available_languages as LANGUAGES %}
+                      {% get_language_info_list for LANGUAGES as languages %}
+
+                      {% for lang in languages %}
+                        <li>
+                        <a class="dropdown-item" href="/{{ lang.code }}/">
+                            {{ lang.name_local }}
+                        </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </li>
                 </ul>
               </div>
+
+
               <!-- Nav End -->
             </div>
 
@@ -145,9 +166,8 @@
             <div class="col-12">
               <!-- Welcome Text -->
               <div class="welcome-text text-center">
-                <h2 data-animation="fadeInUp" data-delay="100ms">We Believe Everyone Should Have Easy Access To Great Dental Care</h2>
-                <p data-animation="fadeInUp" data-delay="300ms">As a leading industry innovator, Dento is opening up exciting new opportunities for dental professionals, investors, employees & suppliers. Contact us to find out what we have to
-                  offer you.</p>
+                <h2 data-animation="fadeInUp" data-delay="100ms">{% trans "We believe our misson will help for polish rootworms " %}</h2>
+                <p data-animation="fadeInUp" data-delay="300ms">{% trans "We have to build." %}</p>
                 <div class="welcome-btn-group">
                   <a href="#" class="btn dento-btn mx-2" data-animation="fadeInUp" data-delay="500ms">Get Started</a>
                   <a href="#" class="btn dento-btn mx-2 active" data-animation="fadeInUp" data-delay="700ms">Contact Us</a>
@@ -165,9 +185,8 @@
             <div class="col-12">
               <!-- Welcome Text -->
               <div class="welcome-text text-center">
-                <h2 data-animation="fadeInDown" data-delay="100ms">We Believe Everyone Should Have Easy Access To Great Dental Care</h2>
-                <p data-animation="fadeInDown" data-delay="300ms">As a leading industry innovator, Dento is opening up exciting new opportunities for dental professionals, investors, employees & suppliers. Contact us to find out what we have to
-                  offer you.</p>
+                <h2 data-animation="fadeInDown" data-delay="100ms">{% trans "We Believe Everyone Should Have Easy Access To Normal House." %}</h2>
+                <p data-animation="fadeInDown" data-delay="300ms">{% trans "As a leading industry DAWIDZOIR provides everthing." %}</p>
                 <div class="welcome-btn-group">
                   <a href="#" class="btn dento-btn mx-2" data-animation="fadeInDown" data-delay="500ms">Get Started</a>
                   <a href="#" class="btn dento-btn mx-2 active" data-animation="fadeInDown" data-delay="700ms">Contact Us</a>

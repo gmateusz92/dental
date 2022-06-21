@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-#import os
-import django_heroku
-import dj_database_url
-from decouple import config
+import os
+import django_heroku #do heroku
+import dj_database_url #do heroku
+from decouple import config #do heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -47,12 +47,13 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware', # dodalem do translacji jezyka
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+    'whitenoise.middleware.WhiteNoiseMiddleware' #dodalem do heroku
 ]
 
 ROOT_URLCONF = 'dental.urls'
@@ -124,9 +125,9 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = BASE_DIR, 'static'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' #do heroku
 
-django_heroku.settings(locals())
+django_heroku.settings(locals()) #do heroku
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST ='smtp.gmail.com'
@@ -151,3 +152,20 @@ EMAIL_USE_TLS = False
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# komendy do jezyka:
+# 1. robie folder locale i robie podfoldery z jezykami
+# 2. komenda python manage.py makemessages --all
+
+from django.utils.translation import gettext_lazy as _
+
+LANGUAGE_CODE ='en'
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('nl', _('Dutch')),
+)
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale/'),
+)
