@@ -17,6 +17,7 @@ def translate(language):
     return text
 
 def contact(request):
+    trans = translate(language='nl')
     if request.method == "POST":
         #do stuff
         message_name = request.POST['message-name']
@@ -32,7 +33,7 @@ def contact(request):
             fail_silently=False,
         )
 
-        return render(request, 'contact.html', {'message_name':message_name})
+        return render(request, 'contact.html', {'message_name':message_name, trans:'trans'})
     else:
         # return the page
-        return render(request, 'contact.html', {})
+        return render(request, 'contact.html', {trans:'trans'})
