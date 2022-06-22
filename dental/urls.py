@@ -20,7 +20,7 @@ from django.utils.translation import gettext_lazy as _
 
 urlpatterns = [
     path(_('admin/'), admin.site.urls),
-    #path('', include('website.urls')),
+    #path('', include('website.urls')),h
 ]
 
 urlpatterns += i18n_patterns (
